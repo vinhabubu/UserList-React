@@ -33,6 +33,9 @@ const App = () => {
     newFormData[fieldName] = fieldValue;
 
     setAddFormData(newFormData);
+    
+ 
+
   };
 
   const handleEditFormChange = (event) => {
@@ -52,14 +55,15 @@ const App = () => {
 
     const newContact = {
       id: nanoid(),
+      MSSV: addFormData.MSSV,
       fullName: addFormData.fullName,
-      address: addFormData.address,
-      phoneNumber: addFormData.phoneNumber,
+      dateBirth: addFormData.dateBirth,
       email: addFormData.email,
     };
 
     const newContacts = [...contacts, newContact];
     setContacts(newContacts);
+   
   };
 
   const handleEditFormSubmit = (event) => {
@@ -67,9 +71,9 @@ const App = () => {
 
     const editedContact = {
       id: editContactId,
-      fullName: editFormData.fullName,
-      address: editFormData.address,
-      phoneNumber: editFormData.phoneNumber,
+      fullName: editFormData.MSSV,
+      address: editFormData.fullName,
+      phoneNumber: editFormData.dateBirth,
       email: editFormData.email,
     };
 
@@ -95,6 +99,7 @@ const App = () => {
     };
 
     setEditFormData(formValues);
+    
   };
 
   const handleCancelClick = () => {
@@ -117,9 +122,9 @@ const App = () => {
         <table>
           <thead>
             <tr>
-              <th>Name</th>
-              <th>Address</th>
-              <th>Phone Number</th>
+              <th>MSSV</th>
+              <th>Họ Tên</th>
+              <th>Ngày sinh</th>
               <th>Email</th>
               <th>Actions</th>
             </tr>
@@ -150,23 +155,23 @@ const App = () => {
       <form onSubmit={handleAddFormSubmit}>
         <input
           type="text"
+          name="MSSV"
+          required="required"
+          placeholder="MSSV"
+          onChange={handleAddFormChange}
+        />
+        <input
+          type="text"
           name="fullName"
           required="required"
-          placeholder="Enter a name..."
+          placeholder="Họ tên"
           onChange={handleAddFormChange}
         />
         <input
           type="text"
-          name="address"
+          name="dateBirth"
           required="required"
-          placeholder="Enter an addres..."
-          onChange={handleAddFormChange}
-        />
-        <input
-          type="text"
-          name="phoneNumber"
-          required="required"
-          placeholder="Enter a phone number..."
+          placeholder="Ngày sinh"
           onChange={handleAddFormChange}
         />
         <input
